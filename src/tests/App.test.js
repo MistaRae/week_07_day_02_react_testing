@@ -29,6 +29,19 @@ describe('Calculator', () => {
     expect(runningTotal).toHaveTextContent('5');
   })
 
+  it('should subtract 1 from 4 and get 3', () => {
+    const button1 = container.getByText('1');
+    const button4 = container.getByText('4');
+    const equals = container.getByText('=')
+    const subtract = container.getByText('-')
+    const runningTotal = container.getByTestId('running-total');
+    fireEvent.click(button1);
+    fireEvent.click(subtract);
+    fireEvent.click(button4);
+    fireEvent.click(equals);
+
+    expect(runningTotal).toHaveTextContent('3');
+  })
 
 })
 
