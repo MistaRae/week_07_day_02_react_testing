@@ -43,5 +43,18 @@ describe('Calculator', () => {
     expect(runningTotal).toHaveTextContent('3');
   })
 
+  it('should multiply 4 by 4 and get 16', () => {
+    const button4 = container.getByText('4');
+    const equals = container.getByText('=')
+    const multiply = container.getByText('x')
+    const runningTotal = container.getByTestId('running-total');
+    fireEvent.click(button4);
+    fireEvent.click(multiply);
+    fireEvent.click(button4);
+    fireEvent.click(equals);
+
+    expect(runningTotal).toHaveTextContent('16');
+  })
+
 })
 
