@@ -72,7 +72,7 @@ describe('Calculator', () => {
     expect(runningTotal).toHaveTextContent('3');
   })
 
-  it('should divide 21 by 7 and get 3', () => {
+  it('should be able to concatenate number inputs', () => {
     const button6 = container.getByText('6');
     const button8 = container.getByText('8');
     const button9 = container.getByText('9');
@@ -84,6 +84,27 @@ describe('Calculator', () => {
 
     expect(runningTotal).toHaveTextContent('689');
   })
+
+  it('should be able to chain mutliple events together', () => {
+    const button7 = container.getByText('7');
+    const button8 = container.getByText('8');
+    const button9 = container.getByText('9');
+    const add = container.getByText('+')
+    const subtract = container.getByText('-')
+    const equals = container.getByText('=')
+    const runningTotal = container.getByTestId('running-total');
+    fireEvent.click(button7);
+    fireEvent.click(add);
+    fireEvent.click(button9);
+    fireEvent.click(equals);
+    fireEvent.click(subtract);
+    fireEvent.click(button8);
+    fireEvent.click(equals);
+   
+
+    expect(runningTotal).toHaveTextContent('8');
+  })
+
 
 })
 
