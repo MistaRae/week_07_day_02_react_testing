@@ -32,4 +32,66 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '1')
   })
 
+  it('should be able to show positive numbers', () => {
+    cy.get('#number2').click()
+    cy.get('#operator_add').click()
+    cy.get('#number3').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '5')
+  })
+
+  it('should be able to show decimals', () => {
+    cy.get('#number2').click()
+    cy.get('#number3').click()
+    cy.get('#operator-divide').click()
+    cy.get('#number3').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '7.666666666666667')
+  })
+
+  it('should be able to handle large numbers', () => {
+    cy.get('#number9').click()
+    cy.get('#operator-multiply').click()
+    cy.get('#number9').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '81')
+  })
+
+
+  it('should be able to handle very VERY large numbers', () => {
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#operator-multiply').click()
+    cy.get('#number9').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '891')
+  })
+
+  it('should be able to handle very VERY, stupidly in fact, large numbers', () => {
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#operator-multiply').click()
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#operator-equals').click()
+    cy.get('#operator-multiply').click()
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#number9').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '997002999')
+  })
+
+  it('should be able to divide by zero', () => {
+    cy.get('#number9').click()
+    cy.get('#operator-divide').click()
+    cy.get('#number0').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', 'Infinity')
+  })
+
+
+
 })
